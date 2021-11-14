@@ -1,0 +1,29 @@
+{
+  "name": "@nodestrap/validations",
+  "version": "4.0.0",
+  "description": "A validation management system for (editable) web components.",
+  "main": "dist/validations.jsx",
+  "types": "dist/validations.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodestrap/validations.git"
+  },
+  "keywords": [
+    "validations",
+    "design",
+    "layouts"
+  ],
+  "author": "heymarco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nodestrap/validations/issues"
+  },
+  "homepage": "https://github.com/nodestrap/validations#readme",
+  "dependencies": {
+    "@types/react": "^17.0.34",
+    "react": "^17.0.2"
+  }
+}
