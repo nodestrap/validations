@@ -44,9 +44,8 @@ export const usePropValidation = (props) => {
     };
 };
 export function ValidationProvider(props) {
-    return (React.createElement(Context.Provider, { value: {
-            enableValidation: props.enableValidation ?? _defaultEnableValidation,
-            isValid: props.isValid,
-        } }, props.children));
+    // fn props:
+    const propValidation = usePropValidation(props);
+    return (React.createElement(Context.Provider, { value: propValidation }, props.children));
 }
 export { ValidationProvider as default };
