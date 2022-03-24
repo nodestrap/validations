@@ -1,6 +1,7 @@
 // react:
 import { default as React, createContext, useContext, } from 'react'; // base technology of our nodestrap components
 // defaults:
+const _defaultEnableRootValidation = false;
 const _defaultEnableValidation = true;
 const _defaultIsValid = undefined;
 const _defaultInheritValidation = true;
@@ -10,14 +11,16 @@ const _defaultInheritValidation = true;
 export const Context = createContext(/*defaultValue :*/ {
     enableValidation: _defaultEnableValidation,
     isValid: _defaultIsValid,
+    atRoot: true,
 });
 Context.displayName = 'Validation';
 // hooks:
 export const usePropValidation = (props) => {
     // contexts:
     const valContext = useContext(Context);
+    const atRoot = valContext.atRoot;
     const inheritValidation = (props.inheritValidation ?? _defaultInheritValidation);
-    const enableValidation = ((inheritValidation
+    const enableValidation = atRoot ? (props.enableValidation ?? _defaultEnableRootValidation) : ((inheritValidation
         ?
             valContext.enableValidation // inherit
         :
@@ -39,13 +42,18 @@ export const usePropValidation = (props) => {
         return props.isValid; // otherwise => use the component's validity
     })();
     return {
-        enableValidation: enableValidation,
-        isValid: isValid,
+        enableValidation,
+        isValid,
+        atRoot,
     };
 };
 export function ValidationProvider(props) {
     // fn props:
-    const propValidation = usePropValidation(props);
+    const { atRoot, ...propValidation } = usePropValidation(props);
+    if (atRoot) {
+        propValidation.enableValidation = props.enableValidation ?? _defaultEnableValidation;
+        propValidation.isValid = props.isValid ?? _defaultIsValid;
+    } // if
     return (React.createElement(Context.Provider, { value: propValidation }, props.children));
 }
 export { ValidationProvider as default };

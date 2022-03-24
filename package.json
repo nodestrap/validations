@@ -1,6 +1,6 @@
 {
   "name": "@nodestrap/validations",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "A validation management system for (editable) web components.",
   "type": "module",
   "main": "dist/validations.js",
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/nodestrap/validations#readme",
   "dependencies": {
-    "@types/react": "^17.0.38",
+    "@types/react": "^17.0.42",
     "react": "^17.0.2"
   }
 }

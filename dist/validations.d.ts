@@ -29,11 +29,14 @@ export interface Validation {
      */
     isValid?: Result;
 }
+interface ValidationRoot {
+    atRoot?: true | undefined;
+}
 /**
  * A react context for validation stuff.
  */
-export declare const Context: React.Context<Validation>;
-export declare const usePropValidation: (props: ValidationProps) => Validation;
+export declare const Context: React.Context<Validation & ValidationRoot>;
+export declare const usePropValidation: (props: ValidationProps) => Validation & ValidationRoot;
 export interface ValidationProps extends Partial<Validation> {
     /**
      * `undefined` : same as `true`.
